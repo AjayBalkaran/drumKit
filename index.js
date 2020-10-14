@@ -41,14 +41,24 @@ function checkSound (check) {
     }
 }
 
+function buttonAnimation(currentKey){
+   let activeButton = document.querySelector(`.${currentKey}`)
+   activeButton.classList.add("pressed");
+   setTimeout(function(){
+       activeButton.classList.remove("pressed")
+   }, 100)
+}
+
 
 let drumButtons = document.querySelectorAll(".drum");
 for (var i = 0; i <drumButtons.length; i++){ 
     drumButtons[i].addEventListener("click", function () {
        checkSound(this.innerHTML);
+       buttonAnimation(this.innerHTML);
     })
 }
 
 document.addEventListener("keydown", function(event) {
     checkSound(event.key);
+    buttonAnimation(event.key);
 } )
